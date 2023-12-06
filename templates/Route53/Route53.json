@@ -1,0 +1,13 @@
+{
+    "Type": "AWS::Route53::RecordSet",
+    "Properties": {
+        "HostedZoneName": "<%= hosted_zone %>",
+        "Comment": "DNS name for ELB<%= dns_ref %>",
+        "Name": "<%= dns %>",
+        "Type": "CNAME",
+        "TTL": "300",
+        "ResourceRecords": [{
+            "Fn::GetAtt": ["<%= dns_ref %>", "<%= dns_type %>"]
+        }]
+    }
+}

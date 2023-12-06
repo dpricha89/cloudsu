@@ -1,0 +1,9 @@
+{
+    "Type": "AWS::AutoScaling::LaunchConfiguration",
+    "Properties": {
+        "KeyName": "<%= key %>",
+        "ImageId": "<%= ami %>",
+        "InstanceType": "<%= instance_size %>",
+        "BlockDeviceMappings": []
+    }
+}

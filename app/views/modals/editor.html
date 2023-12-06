@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{ name }}</h3>
+</div>
+<div class="modal-body">
+    <div class="ace-editor" ace="myInitCallback" ng-model="editorData"></div>
+</div>
+<div class="modal-footer">
+    <div class="btn-toobar pull-right">
+        <button class="btn btn-default" ng-click="cancel() ">Cancel</button>
+        <button ladda="showSpinner" class="btn btn-primary" ng-click="onDeploy()">
+            Deploy Changes
+        </button>
+    </div>
+</div>

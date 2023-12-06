@@ -1,0 +1,13 @@
+{
+    "Type": "AWS::EC2::Instance",
+    "Properties": {
+        "ImageId": "<%= ami %>",
+        "InstanceType": "<%= instance_size %>",
+        "KeyName": "<%= key %>",
+        "BlockDeviceMappings": [],
+        "Tags": [{
+            "Key": "app_name",
+            "Value": "<%= app_name %>"
+        }]
+    }
+}

@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'SF-reg';
+    src: url('../fonts/sf-reg.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SF-thin';
+    src: url('../fonts/sf-thin.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SF-ultra-thin';
+    src: url('../fonts/sf-ultra-thin.woff') format('woff');
+}
+
+body {
+    font-family: 'SF-reg', Fallback, sans-serif;
+}
+
+#stack-info-left {
+    height: 290px;
+}
+
+#stack-info-right {
+    height: 290px;
+    overflow: scroll;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+hr.soften {
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .8), rgba(0, 0, 0, 0));
+    border: 0;
+}
+
+.ace-editor {
+    height: 400px;
+}

@@ -1,0 +1,67 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+                <h1>
+                    Stacks
+                </h1>
+                <small>
+                    Click + to create a new stack!
+                </small>
+                <div>
+                    <br>
+                    <a ng-click="openCreateForm()" class="btn btn-default btn-outline btn-rounded btn-lg">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-4" ng-repeat="stack in stacks" style="cursor: pointer;">
+            <div ng-class="panelColor(stack.StackStatus)" ng-click="openStack(stack.StackName)">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+                           <i class="fa fa-server"></i>
+                            {{ stack.StackName }}
+                       </h3>
+                    <div class="btn-toolbar pull-right">
+                        <a ng-show="!isUpdating(stack.StackStatus)" class="btn btn-default btn-outline btn-circle" ng-click="deleteStack($event, stack.StackName)">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <i ng-show="isUpdating(stack.StackStatus)" class="fa fa-circle-o-notch fa-spin fa-2x"></i>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <tr>
+                            <td>&nbsp<i class="fa fa-clock-o"></i>
+                            </td>
+                            <td>&nbsp<strong>Created:</strong>
+                            </td>
+                            <td>&nbsp<span am-time-ago="stack.CreationTime"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp<i class="fa fa-clock-o"></i>
+                            </td>
+                            <td>&nbsp<strong>Updated:</strong>
+                            </td>
+                            <td>&nbsp<span am-time-ago="stack.LastUpdatedTime"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp<i ng-class="stackStatus(stack.StackStatus)"></i>
+                            </td>
+                            <td>&nbsp<strong>Status:</strong>
+                            </td>
+                            <td>&nbsp{{ stack.StackStatus }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

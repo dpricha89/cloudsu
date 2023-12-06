@@ -1,0 +1,21 @@
+<div class="modal-body">
+    <fieldset>
+        <legend> Connect ELB</legend>
+        <div class="form-group">
+            <label for="select" class="col-lg-2 control-label">Available ELB's</label>
+            <select class="form-control" ng-model="elb_name">
+                <option ng-repeat="elb in elbs" value="{{ elb.PhysicalResourceId }}">{{ elb.LogicalResourceId }} ({{ elb.PhysicalResourceId }})</option>
+            </select>
+        </div>
+        <br>
+        <br>
+        <div class="form-group">
+            <div class="btn-toolbar pull-right">
+                <button ng-click="cancel()" class="btn btn-default">Cancel</button>
+                <button ladda="showSpinner" class="btn btn-primary" ng-click="connect()">
+                    Connect
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</div>

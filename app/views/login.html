@@ -1,0 +1,30 @@
+<div>
+    <div class="text-center animated fadeInDown">
+        <h1 class="logo-name">Cloudsu</h1>
+    </div>
+    <div class="middle-box text-center animated fadeInDown">
+        <div>
+            <h3>Welcome to Cloudsu</h3>
+            <p>Designed and prepared to simplify the cloud deployment process
+            </p>
+            <p>Login in to see it in action.</p>
+            <form class="m-t" role="form">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" ng-model="user.name" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" ng-model="user.password" required>
+                </div>
+                <button ng-click="attemptLogin()" type="submit" ladda="showSpinner" data-spinner-size="35" class="btn btn-primary btn-lg block full-width m-b ladda-button">
+                    Login
+                    </span>
+                </button>
+                <a class="btn btn-sm btn-white btn-block" ng-click="setup()">Initial Setup</a>
+                <a class="btn btn-sm btn-white btn-block" ng-click="import()">Import Previous Config</a>
+            </form>
+            <p class="m-t">
+                <small>Cloudsu &copy; 2016</small>
+            </p>
+        </div>
+    </div>
+</div>

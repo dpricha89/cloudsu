@@ -1,0 +1,21 @@
+{
+    "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+    "Properties": {
+        "Listeners": [{
+            "LoadBalancerPort": "80",
+            "InstancePort": "80",
+            "Protocol": "HTTP"
+        }],
+        "ConnectionDrainingPolicy": {
+            "Enabled": true,
+            "Timeout": 1
+        },
+        "HealthCheck": {
+            "Target": "<%= elb.ping_protocol %>:<%= elb.ping_port %><%= elb.ping_path %>",
+            "HealthyThreshold": "2",
+            "UnhealthyThreshold": "2",
+            "Interval": "5",
+            "Timeout": "3"
+        }
+    }
+}

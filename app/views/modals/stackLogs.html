@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3><i class="fa fa-terminal"></i>&nbsp;Stack Logs</h3>
+</div>
+<div class="modal-body" style="height:400px;overflow:scroll">
+    <table class="table-responsive table-striped">
+        <tbody>
+            <tr ng-class="logColor(log.ResourceStatus)" ng-repeat="log in stack_logs | orderBy:'$index':false">
+                <td>{{ log.Timestamp }}</td>
+                <td>{{ log.LogicalResourceId }}</td>
+                <td> {{ log.ResourceStatus }}</td>
+                <td> {{ log.ResourceStatusReason }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,54 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="profile-element" uib-dropdown>
+                    <span>
+                        <i class="fa fa-user fa-3x"></i>
+                    </span>
+                    <a uib-dropdown-toggle href>
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">{{userName}}</strong>
+                            </span>
+                        <span class="text-muted text-xs block">Account<b class="caret"></b>
+                            </span>
+                        </span>
+                    </a>
+                    <ul uib-dropdown-menu class="animated flipInX m-t-xs">
+                        <li>
+                            <a ng-click="logout()">Logout</a>
+                        </li>
+                        <li>
+                            <a ng-click="getToken()">API Token</a>
+                        </li>
+                        <li>
+                            <a ng-click="resetPassword()">Change Password</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    <i class="fa fa-cloud"></i> su
+                </div>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="index.stacks">
+                    <i class="fa fa-server"></i>
+                    <span class="nav-label">Stacks</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="index.users">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label">Users</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="index.system">
+                    <i class="fa fa-cogs"></i>
+                    <span class="nav-label">System</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

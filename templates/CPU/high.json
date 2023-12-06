@@ -1,0 +1,22 @@
+{
+    "Type": "AWS::CloudWatch::Alarm",
+    "Properties": {
+        "AlarmDescription": "Scale-up if CPU > 90% for 10 minutes",
+        "MetricName": "CPUUtilization",
+        "Namespace": "AWS/EC2",
+        "Statistic": "Average",
+        "Period": "300",
+        "EvaluationPeriods": "2",
+        "Threshold": "90",
+        "AlarmActions": [{
+            "Ref": "SPU<%= app_name %><%= app_version %>"
+        }],
+        "Dimensions": [{
+            "Name": "AutoScalingGroupName",
+            "Value": {
+                "Ref": "ASG<%= app_name %><%= app_version %>"
+            }
+        }],
+        "ComparisonOperator": "GreaterThanThreshold"
+    }
+}

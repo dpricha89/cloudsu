@@ -1,0 +1,53 @@
+<div class="modal-body">
+    <form name="StackForm" class="form-horizontal">
+        <fieldset>
+            <legend> Upgrade Stack</legend>
+            <div class="form-group">
+                <label>Verion </label>
+                <input type="text" class="form-control" ng-model="stack.app_version">
+                <label><small>current: {{ current_version }}</small></label>
+            </div>
+            <div ng-show="build_size === 'HA'" class="form-group">
+                <label>Cleanup Type <i class="fa fa-info-circle" data-hover="dropdown" data-toggle="dropdown" title="(tag) adds a terminate_date aws tag to the scale group. This option allows for rollback if needed. (delete) Removes the old scale groups as soon as they are disconnected from the ELB."></i></label>
+                <select ng-model="stack.cleanup_type" class="form-control" required>
+                    <option>tag</option>
+                    <option>delete</option>
+                </select>
+            </div>
+            <div ng-show="build_size === 'HA'" class="form-group">
+                <label>Instance Size </label>
+                <select ng-model="stack.instance_size" class="form-control" required>
+                    <option ng-repeat="size in instanceSizes">{{ size }}</option>
+                </select>
+            </div>
+            <div ng-show="build_size === 'HA'" class="form-group">
+                <label>AMI</label>
+                <input type="text" class="form-control" ng-model="stack.ami">
+            </div>
+            <div ng-show="build_size === 'HA'" class="form-group">
+                <label>Min Scale Group Size</label>
+                <input type="number" class="form-control" ng-model="stack.min_size">
+            </div>
+            <div ng-show="build_size === 'HA'" class="form-group">
+                <label>Desired Scale Group Size</label>
+                <input type="number" class="form-control" ng-model="stack.desired_size">
+            </div>
+            <div ng-show="build_size === 'HA'" class="form-group">
+                <label>Max Scale Group Size</label>
+                <input type="number" class="form-control" ng-model="stack.max_size">
+            </div>
+            <div class="i-checks form-group">
+                <label>
+                    <i></i>
+                    <input type="checkbox" ng-model="stack.force_upgrade"> Force Upgrade? <i class="fa fa-info-circle" data-hover="dropdown" data-toggle="dropdown" title="This option forces upgrade when chef environment is not in a READY state"></i>
+                </label>
+            </div>
+            <div class="form-group">
+                <div class="btn-toolbar pull-right">
+                    <button ng-click="cancel()" type="reset" class="btn btn-default">Cancel</button>
+                    <button ladda="showSpinner" class="btn btn-primary" ng-click="upgrade()">Upgrade Stack</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

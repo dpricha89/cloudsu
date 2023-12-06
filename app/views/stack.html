@@ -1,0 +1,222 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+                <h1>
+                    {{stack_name}}
+                </h1>
+            </div>
+            <br/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><i class="fa fa-server"></i> Stack Details</h3>
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-default btn-outline" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="openUpgradeForm()">Upgrade</a></li>
+                            <li><a ng-click="openEnvEditor()">Edit Chef Environment</a></li>
+                            <li><a ng-click="openStackEditor()">Edit Stack Template</a></li>
+                            <li><a ng-click="rollback()">Rollback</a></li>
+                            <li><a ng-click="openStackLogs()">Stack Logs</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody>
+                            <tr ng-show="chef_status">
+                                <td><strong>Chef Status:&nbsp;</strong></td>
+                                <td>
+                                    <span ng-class="status_label(chef_status)"><i ng-class="status_fa_label(chef_status)"></i> {{ chef_status }}</span>
+                                </td>
+                                <td><strong>CF Status:&nbsp;</strong></td>
+                                <td ng-show="stack_status">
+                                    <span ng-class="stack_status_label(stack_status)"><i ng-class="stack_status_fa_label(stack_status)"></i> {{ stack_status }}</span>
+                                </td>
+                            </tr>
+                            <tr ng-show="chef.build_size">
+                                <td><strong>Build Size:&nbsp;</strong></td>
+                                <td>
+                                    {{ chef.build_size }}
+                                </td>
+                                <td><strong>AWS Key:&nbsp;</strong></td>
+                                <td>
+                                    {{ chef.key }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Domain:&nbsp;</strong></td>
+                                <td>
+                                    {{ chef.domain }}
+                                </td>
+                                <td><strong>Instance Size:&nbsp;</strong></td>
+                                <td>
+                                    {{ chef.instance_size }}
+                                </td>
+                            </tr>
+                            <tr ng-show="chef.app_name">
+                                <td><strong>App:&nbsp;</strong></td>
+                                <td>
+                                    {{ chef.app_name }}
+                                </td>
+                                <td><strong>Version:&nbsp;</strong></td>
+                                <td>
+                                    {{ chef.app_version }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="scaleGroups.length" class="row" ng-repeat="scaleGroup in scaleGroups | orderBy:'-CreatedTime'">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><i class="fa fa-cubes"></i>
+                    {{ scaleGroup.AutoScalingGroupName }}
+                    </h3>
+                    <div class="btn-group pull-right">
+                        <a class="btn btn-default btn-outline" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="adjustSize(scaleGroup.app_name, scaleGroup.version)"><i class="fa fa-arrows-h"></i> Adjust Size</a></li>
+                            <li><a ng-click="availableElbs(scaleGroup.AutoScalingGroupName)"><i class="fa fa-sitemap"></i> Connect ELB</a></li>
+                            <li><a ng-click="removeAsg(scaleGroup.app_name, scaleGroup.version)"><i class="fa fa-trash-o"></i> Remove</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <td><strong>Min:&nbsp;</strong></td>
+                                    <td>{{ scaleGroup.MinSize }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Desired:&nbsp;</strong></td>
+                                    <td>{{ scaleGroup.DesiredCapacity }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Max:&nbsp;</strong></td>
+                                    <td>{{ scaleGroup.MaxSize }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>App Name:&nbsp;</strong></td>
+                                    <td>{{ scaleGroup.app_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>App Version:&nbsp;</strong></td>
+                                    <td>{{ scaleGroup.version }}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Created:&nbsp;</strong></td>
+                                    <td><span am-time-ago="scaleGroup.CreatedTime"></span></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-8" ng-show="scaleGroup.LoadBalancerNames.length">
+                            <table ng-repeat="ELB in scaleGroup.LoadBalancerNames">
+                                <caption><i class="fa fa-sitemap"></i> ELB
+                                </caption>
+                                <tr>
+                                    <td><strong>Name:&nbsp;</strong></td>
+                                    <td>{{ELB.LoadBalancerName}}</td>
+                                    <td><i ng-click="detachElb(scaleGroup.AutoScalingGroupName, ELB.LoadBalancerName)" class="fa fa-times pull-right"></i></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CNAME:&nbsp;</strong></td>
+                                    <td><a ng-href="http://{{ ELB.DNSName }}">{{ ELB.DNSName }}</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <caption>Instances</caption>
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            ID
+                                        </td>
+                                        <td>
+                                            IP
+                                        </td>
+                                        <td>
+                                            Status
+                                        </td>
+                                        <td>
+                                            State
+                                        </td>
+                                        <td>
+                                            Launched
+                                        </td>
+                                        <td>
+                                            AMI
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="instance in scaleGroup.Instances" ng-class="rowColor(instance.HealthStatus, instance.LifecycleState)">
+                                        <td> {{ instance.InstanceId }} </td>
+                                        <td> {{ instance.PublicIpAddress }} / {{ instance.PrivateIpAddress }} </td>
+                                        <td><i ng-class="isHappy(instance.HealthStatus)"></i> {{ instance.HealthStatus }} </td>
+                                        <td><i ng-class="inService(instance.LifecycleState)"></i> {{ instance.LifecycleState }} </td>
+                                        <td> <span am-time-ago="instance.LaunchTime"></span> </td>
+                                        <td> {{ instance.ImageId }} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="instances.length">
+        <div class="col-lg-12" ng-repeat="instance in instances">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <h3 class="panel-title pull-left"><i class="fa fa-hdd-o"></i> {{ instance.InstanceId }} </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>
+                                    ID
+                                </td>
+                                <td>
+                                    IP
+                                </td>
+                                <td>
+                                    Launched
+                                </td>
+                                <td>
+                                    AMI
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> {{ instance.InstanceId }} </td>
+                                <td> {{ instance.PublicIpAddress }} / {{ instance.PrivateIpAddress }} </td>
+                                <td> <span am-time-ago="instance.LaunchTime"></span> </td>
+                                <td> {{ instance.ImageId }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<br>

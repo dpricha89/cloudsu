@@ -1,0 +1,53 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+                <h1>
+                    Users
+                </h1>
+                <small>
+                  Service and user accounts.
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div ng-show="!admin" style="text-align: center;">
+                <i class="fa fa-lock" style="font-size: 180px;color: #e5e5e5"></i>
+            </div>
+            <div ng-show="admin" class="ibox">
+                <div class="ibox-title">
+                    <button ng-show="admin" ng-click="createUser()" class="btn btn-outline btn-primary centered">+ User Account</button>
+                </div>
+                <div class="ibox-content">
+                    <div class="full-height-scroll">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr ng-repeat="user in users">
+                                        <td> <i class="fa fa-user fa-2x"></i></td>
+                                        <td> {{user.name}} </td>
+                                        <td> <span ng-show="user.admin" class="badge badge-primary">Admin</span> </td>
+                                        <td>
+                                            <div ng-show="!user.invincible" class="btn-toolbar">
+                                                <a class="btn btn-default pull-right" ng-click="removeUser(user)">
+                                                    <i class="fa fa-close"></i>
+                                                </a>
+                                                <a class="btn btn-default pull-right" ng-click="editUser(user)">
+                                                    <i class="fa fa-graduation-cap"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

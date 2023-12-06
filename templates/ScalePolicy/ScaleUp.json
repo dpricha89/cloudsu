@@ -1,0 +1,11 @@
+{
+    "Type": "AWS::AutoScaling::ScalingPolicy",
+    "Properties": {
+        "AdjustmentType": "ChangeInCapacity",
+        "AutoScalingGroupName": {
+            "Ref": "ASG<%= app_name %><%= app_version %>"
+        },
+        "Cooldown": "60",
+        "ScalingAdjustment": "1"
+    }
+}

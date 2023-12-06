@@ -1,0 +1,13 @@
+<div class="modal-body">
+    <h3>Import Config</h3>
+    <fieldset>
+        <textarea rows="3" class="form-control" ng-model="config" placeholder="Paste contents of secrets.json"></textarea>
+    </fieldset>
+    <br>
+    <div class="form-group">
+        <div class="btn-toobar pull-right">
+            <button class="btn btn-default" ng-click="cancel() ">Cancel</button>
+            <button ladda="showSpinner" class="btn btn-primary" ng-click="importConfig()">Import</button>
+        </div>
+    </div>
+</div>

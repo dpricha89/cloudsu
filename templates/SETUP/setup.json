@@ -1,0 +1,165 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "cloudsu Resources",
+    "Resources": {
+        "config": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [{
+                    "AttributeName": "type",
+                    "AttributeType": "S"
+                }, {
+                    "AttributeName": "name",
+                    "AttributeType": "S"
+                }],
+                "KeySchema": [{
+                    "AttributeName": "type",
+                    "KeyType": "HASH"
+                }, {
+                    "AttributeName": "name",
+                    "KeyType": "RANGE"
+                }],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 2,
+                    "WriteCapacityUnits": 2
+                },
+                "TableName": "cloudsu_config"
+            }
+        },
+        "servers": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [{
+                    "AttributeName": "instance_id",
+                    "AttributeType": "S"
+                }],
+                "KeySchema": [{
+                    "AttributeName": "instance_id",
+                    "KeyType": "HASH"
+                }],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 2,
+                    "WriteCapacityUnits": 2
+                },
+                "TableName": "cloudsu_servers"
+            }
+        },
+        "cloudsuRO": {
+            "Type": "AWS::IAM::User",
+            "Properties": {}
+        },
+        "cloudsuAdmin": {
+            "Type": "AWS::IAM::User",
+            "Properties": {}
+        },
+        "cloudsuFullPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [{
+                        "Effect": "Allow",
+                        "Action": [
+                            "dynamodb:*"
+                        ],
+                        "Resource": [{
+                            "Fn::Join": ["", ["arn:aws:dynamodb:", {
+                                "Ref": "AWS::Region"
+                            }, ":", {
+                                "Ref": "AWS::AccountId"
+                            }, ":table/", {
+                                "Ref": "config"
+                            }]]
+                        }, {
+                            "Fn::Join": ["", ["arn:aws:dynamodb:", {
+                                "Ref": "AWS::Region"
+                            }, ":", {
+                                "Ref": "AWS::AccountId"
+                            }, ":table/", {
+                                "Ref": "servers"
+                            }]]
+                        }]
+                    }]
+                },
+                "PolicyName": "cloudsu_full_policy",
+                "Users": [{
+                    "Ref": "cloudsuAdmin"
+                }]
+            }
+        },
+        "cloudsuROPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [{
+                        "Effect": "Allow",
+                        "Action": [
+                            "dynamodb:GetItem"
+                        ],
+                        "Resource": [{
+                            "Fn::Join": ["", ["arn:aws:dynamodb:", {
+                                "Ref": "AWS::Region"
+                            }, ":", {
+                                "Ref": "AWS::AccountId"
+                            }, ":table/", {
+                                "Ref": "servers"
+                            }]]
+                        }]
+                    }]
+                },
+                "PolicyName": "cloudsuROPolicy",
+                "Users": [{
+                    "Ref": "cloudsuRO"
+                }]
+            }
+        },
+        "cloudsuTopic": {
+            "Type": "AWS::SNS::Topic",
+            "Properties": {
+                "DisplayName": "cloudsu_topic",
+                "Subscription": [{
+                    "Endpoint": {
+                        "Fn::GetAtt": ["cloudsuSqs", "Arn"]
+                    },
+                    "Protocol": "sqs"
+                }],
+                "TopicName": "cloudsuTopic"
+            }
+        },
+        "cloudsuSqs": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {
+                "QueueName": "cloudsuSqs"
+            }
+        },
+        "cloudsuSqsPolicy": {
+            "Type": "AWS::SQS::QueuePolicy",
+            "Properties": {
+                "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [{
+                        "Sid": "cloudsu SNS Policy",
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": "sqs:SendMessage",
+                        "Resource": {
+                            "Fn::GetAtt": ["cloudsuSqs", "Arn"]
+                        },
+                        "Condition": {
+                            "ArnEquals": {
+                                "aws:SourceArn": {
+                                    "Ref": "cloudsuTopic"
+                                }
+                            }
+                        }
+                    }]
+                },
+                "Queues": [{
+                    "Ref": "cloudsuSqs"
+                }]
+            }
+        }
+
+    }
+}

@@ -1,0 +1,27 @@
+<div class="modal-body">
+    <form class="form-horizontal">
+        <fieldset>
+            <legend> Adjust Scale Group Size</legend>
+            <div class="form-group">
+                <label> Min Scale Group Size</label>
+                <input type="number" class="form-control" ng-model="adjust.min_size" required>
+            </div>
+            <div class="form-group">
+                <label> Desired Scale Group Size</label>
+                <input type="number" class="form-control" ng-model="adjust.desired" required>
+            </div>
+            <div class="form-group">
+                <label> Max Scale Group Size</label>
+                <input type="number" class="form-control" ng-model="adjust.max_size" required>
+            </div>
+            <div class="form-group">
+                <div class="btn-toolbar pull-right">
+                    <button ng-click="cancel()" type="reset" class="btn btn-default">Cancel</button>
+                    <button ladda="showSpinner" class="btn btn-primary" ng-click="adjustSize()">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

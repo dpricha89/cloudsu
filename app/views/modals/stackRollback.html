@@ -1,0 +1,18 @@
+<div class="modal-body">
+    <legend> Rollback Stack</legend>
+    <div ng-show="rollback_available">
+        <p>Are you sure you want to rollback: {{ stack_name }}</p>
+    </div>
+    <div ng-show="!rollback_available">
+        <p>Rollback is not available for this stack.</p>
+        <small>Make sure to use the tag feature when upgrading to enable this function.</small>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <button ng-click="cancel()" class="btn btn-default">Cancel</button>
+            <button ng-show="rollback_available" ladda="showSpinner" class="btn btn-primary" ng-click="rollback()">Rollback</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+{
+    "Fn::Base64": {
+        "Fn::Join": [
+            "", [
+                "#!/bin/bash\n",
+                "mkdir -p /etc/chef/ohai/hints\n",
+                "echo \"{}\" > /etc/chef/ohai/hints/ec2.json\n",
+                "if [ \"`which apt-get`\" != \"\" ]\n",
+                "then\n",
+                "apt-get update\n",
+                "apt-get install python-pip python-setuptools -yq\n",
+                "mkdir aws-cfn-bootstrap-latest\n",
+                "curl https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz | tar xz -C aws-cfn-bootstrap-latest --strip-components 1\n",
+                "easy_install aws-cfn-bootstrap-latest\n",
+                "pip install boto3\n",
+                "fi\n",
+                "if [ \"`which yum`\" != \"\" ]\n",
+                "then\n",
+                "yum install python-pip python-setuptools -yq\n",
+                "mkdir aws-cfn-bootstrap-latest\n",
+                "curl https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz | tar xz -C aws-cfn-bootstrap-latest --strip-components 1\n",
+                "easy_install aws-cfn-bootstrap-latest\n",
+                "pip install boto3\n",
+                "fi\n",
+                "retry()\n",
+                "{\n",
+                "for i in {1..3}\n",
+                "do\n",
+                "eval $*\n",
+                "if [ $? = 0 ] ; then\n",
+                "echo status $?\n",
+                "return\n",
+                "fi\n",
+                "sleep 20\n",
+                "done\n",
+                "error_exit\n",
+                "}\n",
+                "function error_exit\n",
+                "{\n",
+                "/usr/local/bin/cfn-signal -e 1 '", {
+                    "Ref": "<%= wh_name %>"
+                },
+                "'\n",
+                " exit 1\n",
+                "}\n",
+                "init_task()",
+                "{\n",
+                "/usr/local/bin/cfn-init --region '", {
+                    "Ref": "AWS::Region"
+                },
+                "'",
+                " -s '", {
+                    "Ref": "AWS::StackId"
+                },
+                "' -r '",
+                "<%= wc_ref %>",
+                "'\n",
+                "}\n",
+                "retry init_task\n",
+                "/usr/local/bin/cfn-signal -e 0 -r success '", {
+                    "Ref": "<%= wh_name %>"
+                },
+                "'\n"
+            ]
+        ]
+    }
+}

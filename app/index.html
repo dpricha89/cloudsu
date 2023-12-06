@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html ng-app="stacks">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.ico">
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+    <!-- Google Open Sans -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- Font awesome -->
+    <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet">
+    <!-- Toastr -->
+    <link href="bower_components/angular-toastr/dist/angular-toastr.min.css" rel="stylesheet">
+    <!-- Ladda Button -->
+    <link href="bower_components/ladda/dist/ladda-themeless.min.css">
+    <!-- Pretty Json -->
+    <link href="bower_components/ng-prettyjson/dist/ng-prettyjson.min.css">
+    <!-- Main Inspinia CSS files -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) styles/style.css -->
+    <link href="styles/animate.css" rel="stylesheet">
+    <link href="styles/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+
+<body ng-controller="MainCtrl as main">
+    <!-- Main view  -->
+    <div ui-view></div>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- jQuery and Bootstrap -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- MetsiMenu -->
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="bower_components/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- Peace JS -->
+    <script src="bower_components/pace/pace.min.js"></script>
+    <!-- Angular scripts-->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <!-- Moment -->
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <!-- NG Storage -->
+    <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <!-- Underscore -->
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/angular-underscore-module/angular-underscore-module.js"></script>
+    <!-- icheck -->
+    <script src="app/plugins/iCheck/icheck.min.js"></script>
+    <script src="app/plugins/iCheck/icheck_helper.js"></script>
+    <!-- sweet alert -->
+    <script src="bower_components/angular-sweetalert/SweetAlert.min.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- ace editor -->
+    <script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+    <script src="bower_components/ace-builds/src-min-noconflict/mode-json.js"></script>
+    <script src="bower_components/angular-ace/lib/angular-ace.js"></script>
+    <!-- toastr -->
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+    <!-- ladda buttons -->
+    <script src="bower_components/ladda/dist/spin.min.js"></script>
+    <script src="bower_components/ladda/dist/ladda.min.js"></script>
+    <script src="bower_components/angular-ladda/dist/angular-ladda.js"></script>
+    <!-- Pretty Json -->
+    <script src="bower_components/ng-prettyjson/dist/ng-prettyjson.min.js"></script>
+    <!-- Angular Dependiences -->
+    <!--                      -->
+    <!--                      -->
+    <!--                      -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- Custom and plugin javascript -->
+    <script src="scripts/cloudsu.js"></script>
+    <!-- Anglar App Script -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/directives.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/config.js"></script>
+    <!-- Services -->
+    <script src="scripts/services/dataStore.js"></script>
+    <script src="scripts/services/httpIntercepter.js"></script>
+    <!-- Controllers -->
+    <script src="scripts/controllers/stacksController.js"></script>
+    <script src="scripts/controllers/stackController.js"></script>
+    <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/setup.js"></script>
+    <script src="scripts/controllers/createStack.js"></script>
+    <script src="scripts/controllers/usersController.js"></script>
+    <script src="scripts/controllers/createUser.js"></script>
+    <script src="scripts/controllers/editUser.js"></script>
+    <script src="scripts/controllers/resetPassword.js"></script>
+    <script src="scripts/controllers/system.js"></script>
+    <script src="scripts/controllers/serviceAccount.js"></script>
+    <script src="scripts/controllers/upgradeStack.js"></script>
+    <script src="scripts/controllers/templateEditor.js"></script>
+    <script src="scripts/controllers/stackRollback.js"></script>
+    <script src="scripts/controllers/groupResize.js"></script>
+    <script src="scripts/controllers/connectElb.js"></script>
+    <script src="scripts/controllers/chefEditor.js"></script>
+    <script src="scripts/controllers/import.js"></script>
+    <script src="scripts/controllers/stackLogs.js"></script>
+    <!-- endbuild -->
+</body>
+
+</html>

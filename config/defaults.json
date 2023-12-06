@@ -1,0 +1,359 @@
+{
+    "name": "GLOBAL",
+    "type": "SETTINGS",
+    "aws_default_tag_key": "image_type",
+    "aws_default_delete_tag": "terminate_date",
+    "aws_default_max_retries": 3,
+    "bucket_regions": [
+        "us-east-1",
+        "us-west-1",
+        "us-west-2",
+        "eu-west-1",
+        "ap-southeast-1",
+        "ap-southeast-2",
+        "ap-northeast-1",
+        "sa-east-1"
+    ],
+    "regions": [
+        "us-east-1",
+        "us-west-2",
+        "us-west-1",
+        "eu-west-1",
+        "eu-central-1",
+        "ap-southeast-1",
+        "ap-northeast-1",
+        "ap-southeast-2",
+        "ap-northeast-2"
+    ],
+    "aws_default_size_available": [
+        "t1.micro",
+        "t2.nano",
+        "t2.micro",
+        "t2.small",
+        "t2.medium",
+        "m1.small",
+        "m1.medium",
+        "m1.large",
+        "m1.xlarge",
+        "m2.xlarge",
+        "m2.2xlarge",
+        "m2.4xlarge",
+        "m3.medium",
+        "m3.large",
+        "m3.xlarge",
+        "m3.2xlarge",
+        "c1.medium",
+        "c1.xlarge",
+        "c3.large",
+        "c3.xlarge",
+        "c3.2xlarge",
+        "c3.4xlarge",
+        "c3.8xlarge",
+        "g2.2xlarge",
+        "r3.large",
+        "r3.xlarge",
+        "r3.2xlarge",
+        "r3.4xlarge",
+        "r3.8xlarge",
+        "i2.xlarge",
+        "i2.2xlarge",
+        "i2.4xlarge",
+        "i2.8xlarge",
+        "hi1.4xlarge",
+        "hs1.8xlarge",
+        "cr1.8xlarge",
+        "cc2.8xlarge",
+        "cg1.4xlarge"
+    ],
+    "region_map": {
+        "us-east-1": [
+            "us-east-1a",
+            "us-east-1b",
+            "us-east-1c",
+            "us-east-1e"
+        ],
+        "us-west-2": [
+            "us-west-2a",
+            "us-west-2b",
+            "us-west-2c"
+        ],
+        "us-west-1": [
+            "us-west-1a",
+            "us-west-1b"
+        ],
+        "eu-west-1": [
+            "eu-west-1a",
+            "eu-west-1b",
+            "eu-west-1c"
+        ],
+        "eu-central-1": [
+            "eu-central-1a",
+            "eu-central-1b"
+        ],
+        "ap-southeast-1": [
+            "ap-southeast-1a",
+            "ap-southeast-1b"
+        ],
+        "ap-northeast-1": [
+            "ap-northeast-1a",
+            "ap-northeast-1b"
+        ],
+        "ap-southeast-2": [
+            "ap-southeast-2a",
+            "ap-southeast-2b"
+        ],
+        "ap-northeast-2": [
+            "ap-northeast-2a",
+            "ap-northeast-2b"
+        ]
+    },
+    "aws_instancestore_map": [{
+        "c1_medium": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2"
+        ]
+    }, {
+        "c1_xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3"
+        ]
+    }, {
+        "c3_large": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "c3_xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "c3_2xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "c3_4xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "c3_8xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "cc2_8xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3"
+        ]
+    }, {
+        "cg1_4xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "cr1_8xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "d2_xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2"
+        ]
+    }, {
+        "d2_2 xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3",
+            "ephemeral4",
+            "ephemeral5"
+        ]
+    }, {
+        "d2_4 xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3",
+            "ephemeral4",
+            "ephemeral5",
+            "ephemeral6",
+            "ephemeral7",
+            "ephemeral8",
+            "ephemeral9",
+            "ephemeral10",
+            "ephemeral11"
+        ]
+    }, {
+        "d2_8 xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3",
+            "ephemeral4",
+            "ephemeral5",
+            "ephemeral6",
+            "ephemeral7",
+            "ephemeral8",
+            "ephemeral9",
+            "ephemeral10",
+            "ephemeral11",
+            "ephemeral12",
+            "ephemeral13",
+            "ephemeral14",
+            "ephemeral15",
+            "ephemeral16",
+            "ephemeral17",
+            "ephemeral18",
+            "ephemeral19",
+            "ephemeral20",
+            "ephemeral21",
+            "ephemeral22",
+            "ephemeral23"
+        ]
+    }, {
+        "g2_2 xlarge": [
+            "ephemeral0"
+        ]
+    }, {
+        "g2_8 xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "hi1_4 xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "hs1_8 xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3",
+            "ephemeral4",
+            "ephemeral5",
+            "ephemeral6",
+            "ephemeral7",
+            "ephemeral8",
+            "ephemeral9",
+            "ephemeral10",
+            "ephemeral11",
+            "ephemeral12",
+            "ephemeral13",
+            "ephemeral14",
+            "ephemeral15",
+            "ephemeral16",
+            "ephemeral17",
+            "ephemeral18",
+            "ephemeral19",
+            "ephemeral20",
+            "ephemeral21",
+            "ephemeral22",
+            "ephemeral23"
+        ]
+    }, {
+        "i2_xlarge": [
+            "ephemeral0"
+        ]
+    }, {
+        "i2_2 xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "i2_4 xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3"
+        ]
+    }, {
+        "i2_8 xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3",
+            "ephemeral4",
+            "ephemeral5",
+            "ephemeral6",
+            "ephemeral7"
+        ]
+    }, {
+        "m1_small": [
+            "ephemeral0"
+        ]
+    }, {
+        "m1_medium": [
+            "ephemeral0"
+        ]
+    }, {
+        "m1_large": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "m1_xlarge": [
+            "ephemeral0",
+            "ephemeral1",
+            "ephemeral2",
+            "ephemeral3"
+        ]
+    }, {
+        "m2_xlarge": [
+            "ephemeral0"
+        ]
+    }, {
+        "m2_4 xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "m3_medium": [
+            "ephemeral0"
+        ]
+    }, {
+        "m3_large": [
+            "ephemeral0"
+        ]
+    }, {
+        "m3_xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "m3_2 xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }, {
+        "r3_large": [
+            "ephemeral0"
+        ]
+    }, {
+        "r3_xlarge": [
+            "ephemeral0"
+        ]
+    }, {
+        "r3_2 xlarge": [
+            "ephemeral0"
+        ]
+    }, {
+        "r3_4 xlarge": [
+            "ephemeral0"
+        ]
+    }, {
+        "r3_8 xlarge": [
+            "ephemeral0",
+            "ephemeral1"
+        ]
+    }]
+}

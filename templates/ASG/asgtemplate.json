@@ -1,0 +1,33 @@
+{
+    "Type": "AWS::AutoScaling::AutoScalingGroup",
+    "Properties": {
+        "LaunchConfigurationName": {
+            "Ref": "LC<%= app_name %><%= app_version %>"
+        },
+        "MinSize": "<%= min_size %>",
+        "MaxSize": "<%= max_size %>",
+        "HealthCheckGracePeriod": 360,
+        "HealthCheckType": "ELB",
+        "Tags": [{
+            "Key": "version",
+            "Value": "<%= app_version %>",
+            "PropagateAtLaunch": true
+        }, {
+            "Key": "app_name",
+            "Value": "<%= app_name %>",
+            "PropagateAtLaunch": true
+        }, {
+            "Key": "Name",
+            "Value": "<%= stack_name %>-<%= app_name %>-<%= app_version %>",
+            "PropagateAtLaunch": true
+        }],
+        "LoadBalancerNames": []
+    },
+    "UpdatePolicy": {
+        "AutoScalingRollingUpdate": {
+            "MinInstancesInService": "1",
+            "MaxBatchSize": "1",
+            "PauseTime": "PT30S"
+        }
+    }
+}
