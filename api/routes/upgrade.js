@@ -3,6 +3,7 @@
 
 const logger = require('../../utls/logger.js');
 const err_handler = require('../../utls/error_handler.js');
+const utilities = require('../../utls/utilities.js')
 
 class Upgrade {
     constructor() {}
@@ -19,7 +20,9 @@ class Upgrade {
 
         return upgrade_client.full(params)
             .then(response => {
-                res.status(200).json({ status: 'ok', message: 'Successfully started upgrade' });
+                res.status(200).json({ status: 'ok',
+                message: 'Successfully started upgrade',
+                date: utilities.formatPrettyDate(new Date()) });
             })
             .catch(err => {
                 logger.error(err);
