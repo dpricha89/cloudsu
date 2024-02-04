@@ -30,6 +30,40 @@ class utls_client {
     return moment(date).format("MMMM Do, YYYY");
   }
 
+  getNthDaysOfYear(year, dayOfWeek, nth) {
+    let dates = [];
+
+    for (let month = 0; month < 12; month++) {
+      let date = new Date(year, month, 1);
+      let added = false;
+
+      while (date.getMonth() === month) {
+        if (date.getDay() === dayOfWeek) {
+          if (!added) {
+            // Skip to the nth occurrence
+            added = true;
+            for (let skip = 1; skip < nth; skip++) {
+              date.setDate(date.getDate() + 7);
+              if (date.getMonth() !== month) {
+                // Check if it skips to the next month
+                added = false;
+                break;
+              }
+            }
+          }
+          if (added) {
+            dates.push(new Date(date)); // Add the nth occurrence to the list
+            date.setDate(date.getDate() + 7); // Move to the next week
+            added = false; // Reset for the next nth day of the week in the month
+          }
+        }
+        date.setDate(date.getDate() + 1); // Check the next day
+      }
+    }
+
+    return dates;
+  }
+
   run_cmd(cmd) {
     logger.info(`Running command: ${cmd}`);
     return new Promise(function (resolve, reject) {

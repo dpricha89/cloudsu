@@ -3,6 +3,7 @@
 
 const logger = require('../../utls/logger.js');
 const err_handler = require('../../utls/error_handler.js');
+const utilities = require('../../utls/utilities.js')
 
 class Stacks {
     constructor() {}
@@ -88,7 +89,7 @@ class Stacks {
             stack_name: req.params.stack_name
         };
 
-        
+
 
         return stacks_client.deleteStack(params)
             .then(response => {
@@ -189,6 +190,7 @@ class Stacks {
 
         let aws_account = req.aws_account;
         let stacks_client = require('../clients/stacks_client.js');
+        let dates = utilities.getNthDaysOfYear(2023, 1, 2);
         stacks_client.init(aws_account);
 
         return stacks_client.describeEvents(req.params.stack_name)
